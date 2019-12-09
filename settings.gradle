@@ -1,0 +1,2 @@
+include ':app', ':libraries-action', ':libraries-ui-components', ':feature-login', ':feature:login', ':feature:dashboard'
+rootProject.name='Photos Album'

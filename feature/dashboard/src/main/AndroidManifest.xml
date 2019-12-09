@@ -1,0 +1,15 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.venkatesh.featuredashboard">
+
+    <application>
+        <activity
+            android:name=".DashboardActivity"
+            android:label="Dashboard">
+            <intent-filter>
+                <action android:name="com.venkatesh.dashboard.open"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
