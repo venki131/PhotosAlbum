@@ -11,6 +11,8 @@ dependencies {
     implementation Deps.androidx_navigation_fragment
     implementation Deps.androidx_navigation_ui
     implementation Deps.androidx_lifeCycle
+    implementation Deps.androidx_recyclerview
+    implementation Deps.legacy_support
     testImplementation Deps.testlib_junit
 
     androidTestImplementation Deps.testandroidx_runner

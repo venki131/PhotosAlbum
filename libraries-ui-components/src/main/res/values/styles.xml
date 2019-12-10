@@ -8,5 +8,4 @@
         <item name="colorSecondary">@color/colorAccent</item>
         <item name="actionBarTheme">@style/ThemeOverlay.MaterialComponents.Dark.ActionBar</item>
     </style>
-
 </resources>

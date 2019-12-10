@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    app:startDestination="@+id/home_screen">
+
+    <fragment
+        android:id="@+id/home_screen"
+        android:name="com.venkatesh.featuredashboard.fragments.PhotosFragment"
+        android:label="@string/fragment_home"
+        tools:layout="@layout/fragment_item_list">
+        <!--<action
+            android:id="@+id/home_to_favourites"
+            app:destination="@id/favourites_screen" />-->
+    </fragment>
+
+    <fragment
+        android:id="@+id/favourites_screen"
+        android:name="com.venkatesh.featuredashboard.fragments.FavouritesFragment"
+        android:label="@string/fragment_favourite"
+        tools:layout="@layout/fragment_favourites" >
+        <!--<action android:id="@+id/favourites_to_sharing"
+            app:destination="@id/sharing_screen"/>-->
+    </fragment>
+
+    <fragment
+        android:id="@+id/sharing_screen"
+        android:name="com.venkatesh.featuredashboard.fragments.ShareFragment"
+        android:label="@string/fragment_share"
+        tools:layout="@layout/fragment_share" />
+
+</navigation>

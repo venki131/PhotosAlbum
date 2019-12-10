@@ -1,19 +1,45 @@
 package com.venkatesh.featuredashboard
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.venkatesh.libraries_actionupdateUiWithUser.EXTRA_USER
+import com.venkatesh.libraries_actionupdateUiWithUser.UserArgs
+import kotlinx.android.synthetic.main.activity_dashboard.*
 
 class DashboardActivity : AppCompatActivity() {
+    private lateinit var navigationController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
 
-        val userName: String? = intent.getStringExtra(EXTRA_USER)
+        navigationController = Navigation.findNavController(this, R.id.nav_host_fragment)
 
-        findViewById<TextView>(R.id.txtView).text = userName
+        val item = intent.getParcelableExtra<UserArgs>(EXTRA_USER)
+
+        findViewById<TextView>(R.id.txtView).text = item.userName
+        bottomNavigation.setOnNavigationItemSelectedListener(::tabSelected)
+    }
+
+    private fun tabSelected(tab: MenuItem): Boolean {
+        when (tab.itemId) {
+            R.id.action_home -> {
+                findNavController(R.id.nav_host_fragment).navigate(R.id.home_screen)
+            }
+            R.id.action_favourite -> {
+                findNavController(R.id.nav_host_fragment).navigate(R.id.favourites_screen)
+            }
+            R.id.action_sharing -> {
+                findNavController(R.id.nav_host_fragment).navigate(R.id.sharing_screen)
+            }
+        }
+        return false
     }
 }
+
 

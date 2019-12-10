@@ -6,4 +6,4 @@ import kotlinx.android.parcel.Parcelize
 const val EXTRA_USER = "com.venkatesh.dashboard.open.extra.user"
 
 @Parcelize
-data class UserArgs(val userName: String) : Parcelable
+data class UserArgs(var userName: String) : Parcelable

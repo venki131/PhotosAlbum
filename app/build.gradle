@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
-
+apply plugin: 'kotlin-kapt'
 apply from: 'https://raw.githubusercontent.com/JakeWharton/SdkSearch/master/gradle/projectDependencyGraph.gradle'
 
 android {
@@ -23,6 +23,10 @@ android {
 
 }
 
+kapt {
+    generateStubs = true
+}
+
 dependencies {
 
     implementation project(':feature:dashboard')
@@ -35,6 +39,20 @@ dependencies {
     implementation Deps.androidx_navigation_fragment
     implementation Deps.androidx_navigation_ui
     implementation Deps.androidx_constraintlayout
+    implementation Deps.rx_android
+    implementation Deps.rx_java
+    implementation Deps.rx_call_adapter
+    implementation Deps.dagger
+    implementation Deps.dagger_android
+    kapt Deps.dagger_android_compiler
+    kapt Deps.dagger_compiler
+    implementation Deps.dagger_support_android
+    implementation Deps.retrofit
+    implementation Deps.retrofit_converter_gson
+    implementation Deps.http_logging
+    implementation Deps.react_stream
+    implementation Deps.glide
+    annotationProcessor Deps.glide_annotation_processor
     testImplementation Deps.testlib_junit
 
     androidTestImplementation Deps.testandroidx_runner
