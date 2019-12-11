@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 dependencies {
     implementation project(':libraries-ui-components')
@@ -13,6 +14,17 @@ dependencies {
     implementation Deps.androidx_lifeCycle
     implementation Deps.androidx_recyclerview
     implementation Deps.legacy_support
+    implementation Deps.retrofit
+    implementation Deps.retrofit_converter_gson
+    implementation Deps.rx_android
+    implementation Deps.rx_java
+    implementation Deps.rx_call_adapter
+    implementation Deps.dagger
+    implementation Deps.dagger_android
+    kapt Deps.dagger_android_compiler
+    kapt Deps.dagger_compiler
+    implementation Deps.react_stream
+    implementation Deps.dagger_support_android
     testImplementation Deps.testlib_junit
 
     androidTestImplementation Deps.testandroidx_runner

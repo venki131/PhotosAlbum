@@ -1,21 +1,22 @@
 package com.venkatesh.featuredashboard.fragments
 
-import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation
-import androidx.navigation.ui.setupWithNavController
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.venkatesh.featuredashboard.R
-
-import com.venkatesh.featuredashboard.fragments.dummy.DummyContent
+import com.venkatesh.featuredashboard.Resource
 import com.venkatesh.featuredashboard.fragments.dummy.DummyContent.DummyItem
-import kotlinx.android.synthetic.main.activity_dashboard.*
+import com.venkatesh.featuredashboard.models.Album
+import com.venkatesh.featuredashboard.viewmodels.PhotosViewModel
+import com.venkatesh.featuredashboard.viewmodels.ViewModelProviderFactory
+import kotlinx.android.synthetic.main.fragment_item_list.*
+import javax.inject.Inject
 
 /**
  * A fragment representing a list of Items.
@@ -24,7 +25,15 @@ import kotlinx.android.synthetic.main.activity_dashboard.*
  */
 class PhotosFragment : Fragment() {
 
-    // TODO: Customize parameters
+    private val TAG = "PhotosFragment"
+    private var viewModel: PhotosViewModel? = null
+
+    @Inject
+    lateinit var providerFactory: ViewModelProviderFactory
+
+    @Inject
+    lateinit var adapter: PhotosRecyclerAdapter
+
     private var columnCount = 1
 
     private var listener: OnListFragmentInteractionListener? = null
@@ -41,10 +50,9 @@ class PhotosFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_item_list, container, false)
 
         // Set the adapter
-        if (view is RecyclerView) {
+        /*if (view is RecyclerView) {
             with(view) {
                 layoutManager = when {
                     columnCount <= 1 -> LinearLayoutManager(context)
@@ -56,18 +64,45 @@ class PhotosFragment : Fragment() {
                         listener
                     )
             }
-        }
-        return view
+        }*/
+        return inflater.inflate(R.layout.fragment_item_list, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        /*val navController = Navigation.findNavController(requireActivity(), R.id.bottomNavigation)
-        bottomNavigation.setupWithNavController(navController)*/
+        viewModel = ViewModelProviders.of(this, providerFactory).get(PhotosViewModel::class.java)
+
+        initRecyclerView()
+        subscribeObservers()
     }
 
-    override fun onDetach() {
-        super.onDetach()
-        listener = null
+    private fun subscribeObservers() {
+        viewModel?.observePhotos()?.removeObservers(viewLifecycleOwner)
+        viewModel?.observePhotos()
+            ?.observe(viewLifecycleOwner,
+                Observer<Resource<List<Album>>?> { listResource ->
+                    when (listResource?.status) {
+                        Resource.Status.LOADING -> Log.d(
+                            TAG,
+                            "onChanged: onLoading..."
+                        )
+                        Resource.Status.SUCCESS -> {
+                            Log.d(
+                                TAG,
+                                "onChanged: got posts..."
+                            )
+                            //adapter.setPhotos(listResource?.data)
+                        }
+                        Resource.Status.ERROR -> Log.d(
+                            TAG,
+                            "onChanged: on Error..." + listResource.message
+                        )
+                    }
+                })
+    }
+
+    private fun initRecyclerView() {
+        list.layoutManager = LinearLayoutManager(activity)
+        list.adapter = adapter
     }
 
     /**

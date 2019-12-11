@@ -28,7 +28,7 @@ class AppModule {
             .build()
 
         return Retrofit.Builder()
-            .baseUrl("SOME BASE URL")
+            .baseUrl("https://picsum.photos/")
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
