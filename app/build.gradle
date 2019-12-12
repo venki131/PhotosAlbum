@@ -46,6 +46,7 @@ dependencies {
     implementation Deps.dagger_android
     kapt Deps.dagger_android_compiler
     kapt Deps.dagger_compiler
+    kapt Deps.androidx_lifeCycle_compiler
     implementation Deps.dagger_support_android
     implementation Deps.retrofit
     implementation Deps.retrofit_converter_gson

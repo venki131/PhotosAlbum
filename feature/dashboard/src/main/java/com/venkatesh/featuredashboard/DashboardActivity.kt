@@ -9,9 +9,10 @@ import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.venkatesh.libraries_actionupdateUiWithUser.EXTRA_USER
 import com.venkatesh.libraries_actionupdateUiWithUser.UserArgs
+import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_dashboard.*
 
-class DashboardActivity : AppCompatActivity() {
+class DashboardActivity : DaggerAppCompatActivity() {
     private lateinit var navigationController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {

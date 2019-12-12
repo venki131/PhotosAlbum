@@ -7,5 +7,5 @@ import retrofit2.http.GET
 interface DashboardApi {
 
     @GET("v2/list")
-    open fun getPhotos(): Flowable<List<Album>>
+    fun getPhotos(): Flowable<List<Album>>
 }

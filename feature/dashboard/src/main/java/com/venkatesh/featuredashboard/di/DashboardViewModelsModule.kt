@@ -11,5 +11,5 @@ abstract class DashboardViewModelsModule {
     @Binds
     @IntoMap
     @ViewModelKey(PhotosViewModel::class)
-    abstract fun bindAuthViewModel(photosViewModel: PhotosViewModel?): ViewModel?
+    abstract fun bindAuthViewModel(photosViewModel: PhotosViewModel): ViewModel
 }

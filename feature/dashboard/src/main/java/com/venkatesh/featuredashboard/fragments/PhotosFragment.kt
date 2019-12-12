@@ -15,6 +15,7 @@ import com.venkatesh.featuredashboard.fragments.dummy.DummyContent.DummyItem
 import com.venkatesh.featuredashboard.models.Album
 import com.venkatesh.featuredashboard.viewmodels.PhotosViewModel
 import com.venkatesh.featuredashboard.viewmodels.ViewModelProviderFactory
+import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_item_list.*
 import javax.inject.Inject
 
@@ -23,13 +24,14 @@ import javax.inject.Inject
  * Activities containing this fragment MUST implement the
  * [PhotosFragment.OnListFragmentInteractionListener] interface.
  */
-class PhotosFragment : Fragment() {
+class PhotosFragment : DaggerFragment() {
 
     private val TAG = "PhotosFragment"
-    private var viewModel: PhotosViewModel? = null
 
     @Inject
     lateinit var providerFactory: ViewModelProviderFactory
+
+    private lateinit var viewModel: PhotosViewModel
 
     @Inject
     lateinit var adapter: PhotosRecyclerAdapter
@@ -76,9 +78,9 @@ class PhotosFragment : Fragment() {
     }
 
     private fun subscribeObservers() {
-        viewModel?.observePhotos()?.removeObservers(viewLifecycleOwner)
-        viewModel?.observePhotos()
-            ?.observe(viewLifecycleOwner,
+        viewModel.observePhotos().removeObservers(viewLifecycleOwner)
+        viewModel.observePhotos()
+            .observe(viewLifecycleOwner,
                 Observer<Resource<List<Album>>?> { listResource ->
                     when (listResource?.status) {
                         Resource.Status.LOADING -> Log.d(
@@ -90,7 +92,7 @@ class PhotosFragment : Fragment() {
                                 TAG,
                                 "onChanged: got posts..."
                             )
-                            //adapter.setPhotos(listResource?.data)
+                            adapter.setPhotos(listResource.data)
                         }
                         Resource.Status.ERROR -> Log.d(
                             TAG,

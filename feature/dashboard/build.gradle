@@ -23,6 +23,7 @@ dependencies {
     implementation Deps.dagger_android
     kapt Deps.dagger_android_compiler
     kapt Deps.dagger_compiler
+    kapt Deps.androidx_lifeCycle_compiler
     implementation Deps.react_stream
     implementation Deps.dagger_support_android
     testImplementation Deps.testlib_junit

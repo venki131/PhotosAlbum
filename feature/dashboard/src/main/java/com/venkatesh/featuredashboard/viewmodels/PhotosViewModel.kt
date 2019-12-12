@@ -41,7 +41,7 @@ class PhotosViewModel @Inject constructor(dashboardApi: DashboardApi) : ViewMode
                             Function<List<Album>, Resource<List<Album>>> {
                             @Throws(Exception::class)
                             override fun apply(photos: List<Album>): Resource<List<Album>> {
-                                if (photos.size > 0) {
+                                if (photos.isNotEmpty()) {
                                     if (photos[0].id === "-1") {
                                         return Resource.error("Something went wrong", null)
                                     }

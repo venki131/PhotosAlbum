@@ -8,12 +8,13 @@ import dagger.android.ContributesAndroidInjector
 
 @Module
 abstract class FragmentsBuilderModule {
-    @ContributesAndroidInjector
-    abstract fun contributePhotosFragment(): PhotosFragment?
 
     @ContributesAndroidInjector
-    abstract fun contributeFavouritesFragment(): FavouritesFragment?
+    abstract fun contributePhotosFragment(): PhotosFragment
 
     @ContributesAndroidInjector
-    abstract fun contributeShareFragment(): ShareFragment?
+    abstract fun contributeFavouritesFragment(): FavouritesFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeShareFragment(): ShareFragment
 }
