@@ -9,12 +9,13 @@ import retrofit2.Retrofit
 @Module
 class DashboardActivityModule {
 
+    @DashboardScope
     @Provides
     fun provideDashboardApi(retrofit: Retrofit): DashboardApi {
         return retrofit.create(DashboardApi::class.java)
     }
 
-
+    @DashboardScope
     @Provides
     fun provideAdapter(): PhotosRecyclerAdapter {
         return PhotosRecyclerAdapter()

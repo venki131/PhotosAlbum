@@ -16,7 +16,7 @@ class PhotosRecyclerAdapter() : RecyclerView.Adapter<MyItemRecyclerViewAdapter.V
     }
 
     override fun getItemCount(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return photos!!.size
     }
 
     override fun onBindViewHolder(holder: MyItemRecyclerViewAdapter.ViewHolder, position: Int) {

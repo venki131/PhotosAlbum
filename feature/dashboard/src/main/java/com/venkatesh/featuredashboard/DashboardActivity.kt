@@ -3,7 +3,6 @@ package com.venkatesh.featuredashboard
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController

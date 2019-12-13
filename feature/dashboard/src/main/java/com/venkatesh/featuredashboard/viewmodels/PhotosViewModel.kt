@@ -17,12 +17,12 @@ class PhotosViewModel @Inject constructor(dashboardApi: DashboardApi) : ViewMode
 
     private val TAG = "PhotosViewModel"
     private val dashboardApi: DashboardApi = dashboardApi
-    private lateinit var photos: MediatorLiveData<Resource<List<Album>>>
+    private var photos: MediatorLiveData<Resource<List<Album>>>? = null
 
     fun observePhotos(): LiveData<Resource<List<Album>>> {
         if (photos == null) {
             photos = MediatorLiveData()
-            photos.value = Resource.loading(null as List<Album>?)
+            photos!!.value = Resource.loading(null as List<Album>?)
 
             val source: LiveData<Resource<List<Album>>> =
                 LiveDataReactiveStreams.fromPublisher(
@@ -52,14 +52,14 @@ class PhotosViewModel @Inject constructor(dashboardApi: DashboardApi) : ViewMode
                         .subscribeOn(Schedulers.io())
                 )
 
-            photos.addSource(
+            photos!!.addSource(
                 source
             ) { listResource ->
-                photos.value = listResource
-                photos.removeSource(source)
+                photos!!.value = listResource
+                photos!!.removeSource(source)
             }
         }
-        return photos
+        return photos as MediatorLiveData<Resource<List<Album>>>
     }
 
 }

@@ -5,11 +5,12 @@ import com.venkatesh.featuredashboard.di.DashboardActivityModule
 import com.venkatesh.featuredashboard.di.DashboardScope
 import com.venkatesh.featuredashboard.di.DashboardViewModelsModule
 import com.venkatesh.featuredashboard.di.FragmentsBuilderModule
+import com.venkatesh.photosalbum.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module
-interface ActivityBuildersModule {
+abstract class ActivityBuildersModule {
 
     @DashboardScope
     @ContributesAndroidInjector(
@@ -19,5 +20,9 @@ interface ActivityBuildersModule {
             FragmentsBuilderModule::class
         ]
     )
-    fun provideDashboardActivity(): DashboardActivity
+    abstract fun provideDashboardActivity(): DashboardActivity?
+
+    @ContributesAndroidInjector
+    abstract fun provideMainActivity(): MainActivity
+
 }

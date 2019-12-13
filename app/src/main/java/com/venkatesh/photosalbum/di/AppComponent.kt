@@ -1,7 +1,7 @@
 package com.venkatesh.photosalbum.di
 
 import android.app.Application
-import com.venkatesh.featuredashboard.di.ViewModelFactoryModule
+/*import com.venkatesh.featuredashboard.di.ViewModelFactoryModule*/
 import com.venkatesh.photosalbum.BaseApplication
 import dagger.BindsInstance
 import dagger.Component
@@ -18,7 +18,7 @@ import javax.inject.Singleton
         ViewModelFactoryModule::class
     ]
 )
-interface AppComponent : AndroidInjector<BaseApplication?> {
+interface AppComponent : AndroidInjector<BaseApplication> {
 
     @Component.Builder
     interface Builder {
