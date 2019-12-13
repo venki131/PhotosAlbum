@@ -25,6 +25,7 @@ dependencies {
     kapt Deps.dagger_android_compiler
     kapt Deps.dagger_compiler
     kapt Deps.androidx_lifeCycle_compiler
+    implementation Deps.glide
     implementation Deps.react_stream
 
     testImplementation Deps.testlib_junit

@@ -1,5 +1,6 @@
 package com.venkatesh.featuredashboard.di
 
+import com.bumptech.glide.RequestManager
 import com.venkatesh.featuredashboard.fragments.PhotosRecyclerAdapter
 import com.venkatesh.featuredashboard.remote.DashboardApi
 import dagger.Module
@@ -17,7 +18,8 @@ class DashboardActivityModule {
 
     @DashboardScope
     @Provides
-    fun provideAdapter(): PhotosRecyclerAdapter {
-        return PhotosRecyclerAdapter()
+    fun provideAdapter(requestManager: RequestManager): PhotosRecyclerAdapter {
+        return PhotosRecyclerAdapter(requestManager)
     }
+
 }
