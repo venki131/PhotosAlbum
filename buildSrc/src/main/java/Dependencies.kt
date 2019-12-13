@@ -55,6 +55,7 @@ object Deps {
     val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
     val glide_annotation_processor = "com.github.bumptech.glide:compiler:${Versions.glide}"
     val androidx_lifeCycle = "androidx.lifecycle:lifecycle-extensions:${Versions.life_cycle}"
+    val androidx_lifeCycle_compiler = "android.arch.lifecycle:compiler:${Versions.life_cycle}"
     val legacy_support = "androidx.legacy:legacy-support-v4:${Versions.legacy}"
     //Dagger
     val dagger = "com.google.dagger:dagger:${Versions.dagger}"
