@@ -27,7 +27,7 @@ object Versions {
 
     // <editor-fold desc="tools">
     const val gradleandroid = "3.5.0"
-    const val kotlin = "1.3.20"
+    const val kotlin = "1.3.21"
     const val gradleversions = "0.21.0"
     // </editor-fold>
 
